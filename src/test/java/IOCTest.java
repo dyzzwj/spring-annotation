@@ -6,7 +6,10 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author zhengwenjie
@@ -24,6 +27,23 @@ public class IOCTest {
     public void test5(){
         print(applicationContext);
 
+    }
+
+    @Test
+    public void test6(){
+
+        Map<String,Integer> map = new ConcurrentHashMap<>();
+        map.put("5",1);
+        map.put("2",2);
+        map.put("3",3);
+        map.put("4",4);
+        map.put("1",5);
+        map.put("6",6);
+
+        Set<Map.Entry<String, Integer>> entries = map.entrySet();
+        entries.forEach(x -> {
+            System.out.println(x.getKey() + ":" + x.getValue());
+        });
     }
 
 

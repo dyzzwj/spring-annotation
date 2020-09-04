@@ -1,6 +1,8 @@
 package com.dyzwj.config;
 
+import com.dyzwj.aop.EnglishCaculate;
 import com.dyzwj.aop.LogAspect;
+import com.dyzwj.aop.LogAspectOfEnglish;
 import com.dyzwj.aop.MathCaculate;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +22,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 public class ConfigurationOfAop {
 
     @Bean
-    public MathCaculate caculate(){
+    public MathCaculate math(){
         return new MathCaculate();
     }
 
@@ -28,6 +30,17 @@ public class ConfigurationOfAop {
     public LogAspect logAspect(){
         return new LogAspect();
     }
+
+//    @Bean
+    public LogAspectOfEnglish logAspectOfEnglish(){
+        return new LogAspectOfEnglish();
+    }
+
+//    @Bean
+    public EnglishCaculate english(){
+        return new EnglishCaculate();
+    }
+
 
 
 }

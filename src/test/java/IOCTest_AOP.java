@@ -6,7 +6,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 /**
  * @author zhengwenjie
@@ -21,7 +23,7 @@ public class IOCTest_AOP {
     public void test1(){
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(ConfigurationOfAop.class);
         MathCaculate mathCaculate = applicationContext.getBean(MathCaculate.class);
-        System.out.println(mathCaculate);
+//        System.out.println(mathCaculate);
         mathCaculate.div(1,1);
 
     }
@@ -65,9 +67,24 @@ public class IOCTest_AOP {
             System.out.println(lists.size());
         }
         System.out.println(lists);
+    }
 
-        Map<Object, Object> hashMap = new ConcurrentHashMap<>();
+    public static String replaceBlank(String str) {
+        String dest = "";
+        if (str != null) {
+            Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+            Matcher m = p.matcher(str);
+            dest = m.replaceAll("");
+        }
+        return dest;
 
+    }
 
+    @Test
+    public void test4(){
+
+       String str = " abc kk   \t    ";
+
+        System.out.println(replaceBlank(str));
     }
 }
